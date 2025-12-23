@@ -1182,7 +1182,7 @@
                 <div class="col-xl-12">
                     <div class="form-group">
                         <div class="input-box">
-                            <label for=""><b>Property Name</b></label>
+                            <label for=""><b>Property Name <span style="color: red;">*</span></b></label>
                             <input type="text" name="apartment_name" id="formName" placeholder="Enter your property name" required>
                         </div>
                     </div>
@@ -1191,7 +1191,7 @@
                 <div class="col-xl-6">
                     <div class="form-group">
                         <div class="input-box">
-                            <label for=""><b>Contact Person</b></label>
+                            <label for=""><b>Contact Person <span style="color: red;">*</span></b></label>
                             <input type="text" name="contact_person" id="contactPerson" placeholder="Your full name" required>
                         </div>
                     </div>
@@ -1200,7 +1200,7 @@
                 <div class="col-xl-6">
                     <div class="form-group">
                         <div class="input-box">
-                            <label for=""><b>Phone Number</b></label>
+                            <label for=""><b>Phone Number <span style="color: red;">*</span></b></label>
                             <input type="tel" name="phone" class="phone" value="" id="formPhone" placeholder="+91 XXXXX XXXXX" pattern="^[0-9]{10,14}$" minlength="10" maxlength="14" title="Please enter a valid mobile number" required>
                         </div>
                     </div>
@@ -1209,7 +1209,7 @@
                 <div class="col-xl-12">
                     <div class="form-group">
                         <div class="input-box">
-                            <label for=""><b>Email Address</b></label>
+                            <label for=""><b>Email Address <span style="color: red;">*</span></b></label>
                             <input type="email" name="email" value="" id="formEmail" placeholder="your.email@example.com" required>
                         </div>
                     </div>
@@ -1218,7 +1218,7 @@
                 <div class="col-xl-6">
                     <div class="form-group">
                         <div class="input-box">
-                            <label for=""><b>Number of Units</b></label>
+                            <label for=""><b>Number of Units <span style="color: red;">*</span></b></label>
                             <input type="number" name="total_units" value="" id="totalUnits" placeholder="150" min="1" required>
                         </div>
                     </div>
@@ -1226,8 +1226,8 @@
                 
                 <div class="col-xl-6">
                     <div class="form-group">
-                        <div class="input-box">
-                            <label for=""><b>Property Type</b></label>
+                        <div class="input-box property-type">
+                            <label for=""><b>Property Type <span style="color: red;">*</span></b></label>
                             <select name="property_type" id="propertyType" required>
                                 <option value="">Select type</option>
                                 <option value="residential">Residential Complex</option>
@@ -1387,6 +1387,53 @@
         
         function handleSubmit(event) {
             event.preventDefault();
+
+            // Validate required fields
+            const requiredFields = [
+                { id: 'formName', name: 'Property Name' },
+                { id: 'contactPerson', name: 'Contact Person' },
+                { id: 'formPhone', name: 'Phone Number' },
+                { id: 'formEmail', name: 'Email Address' },
+                { id: 'totalUnits', name: 'Number of Units' },
+                { id: 'propertyType', name: 'Property Type' }
+            ];
+
+            let isValid = true;
+            let errorMessage = '';
+
+            for (let field of requiredFields) {
+                const element = document.getElementById(field.id);
+                if (!element.value.trim()) {
+                    isValid = false;
+                    errorMessage += `• ${field.name} is required\n`;
+                    element.style.borderColor = 'red';
+                } else {
+                    element.style.borderColor = '';
+                }
+            }
+
+            // Validate email format
+            const emailField = document.getElementById('formEmail');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailField.value && !emailPattern.test(emailField.value)) {
+                isValid = false;
+                errorMessage += '• Please enter a valid email address\n';
+                emailField.style.borderColor = 'red';
+            }
+
+            // Validate phone number
+            const phoneField = document.getElementById('formPhone');
+            const phonePattern = /^[0-9]{10,14}$/;
+            if (phoneField.value && !phonePattern.test(phoneField.value)) {
+                isValid = false;
+                errorMessage += '• Please enter a valid phone number (10-14 digits)\n';
+                phoneField.style.borderColor = 'red';
+            }
+
+            if (!isValid) {
+                alert('Please fix the following errors:\n\n' + errorMessage);
+                return false;
+            }
 
             // Show loading state
             const submitButton = document.getElementById('submit-button-site');
