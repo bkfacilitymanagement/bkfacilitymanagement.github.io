@@ -3243,6 +3243,15 @@ select:focus {
     margin-bottom: 20px;
 }
 
+.contact-form form .input-box.property-type {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form form .input-box.property-type .nice-select {
+    max-width: 200px;
+}
+
 .contact-form form input[type="text"],
 .contact-form form input[type="email"],
 .contact-form form input[type="tel"],
