@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://bkfacilitymanagement.com/sitemap.xml
