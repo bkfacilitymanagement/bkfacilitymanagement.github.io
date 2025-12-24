@@ -1,0 +1,203 @@
+/* Navigation Menu Styles */
+.header-middle {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.main-menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.main-menu ul li {
+    position: relative;
+}
+
+.main-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.main-menu ul li a:hover {
+    color: var(--thm-primary);
+}
+
+/* Mobile Navigation Toggle */
+.mobile-nav-toggler {
+    display: flex !important;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 7px 12px;
+    margin-left: 15px;
+    z-index: 9999;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    margin-bottom: 9px;
+}
+
+.mobile-nav-toggler span {
+    width: 30px;
+    height: 4px;
+    background: #333;
+    margin: 4px 0;
+    transition: 0.3s;
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .header-right {
+        display: flex !important;
+    }
+    
+    .phone-number-box1 {
+        display: none;
+    }
+    
+    .btn-box {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .phone-number-box1:first-of-type {
+        display: none;
+    }
+    
+    .btn-box {
+        display: none;
+    }
+}
+
+/* Mobile Menu Styling */
+.mobile-menu .menu-outer ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.mobile-menu .menu-outer ul li {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transform: translateX(-100%);
+    animation: slideIn 0.3s ease forwards;
+}
+
+.mobile-menu .menu-outer ul li:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu .menu-outer ul li:nth-child(2) { animation-delay: 0.2s; }
+.mobile-menu .menu-outer ul li:nth-child(3) { animation-delay: 0.3s; }
+.mobile-menu .menu-outer ul li:nth-child(4) { animation-delay: 0.4s; }
+
+.mobile-menu .menu-outer ul li.active a {
+    background: var(--thm-primary);
+    color: white;
+}
+
+.mobile-menu .menu-outer ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-menu .menu-outer ul li a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+}
+
+.mobile-menu .menu-outer ul li a:hover {
+    background: var(--thm-primary);
+    padding-left: 30px;
+    transform: scale(1.02);
+}
+
+.mobile-menu .menu-outer ul li a:hover:before {
+    left: 100%;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Breadcrumb Styles */
+.breadcrumb-area {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.breadcrumb-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.breadcrumb-content {
+    position: relative;
+    z-index: 2;
+}
+
+.breadcrumb-title h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.breadcrumb-menu ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+}
+
+.breadcrumb-menu ul li {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.breadcrumb-menu ul li.active {
+    color: white;
+}
+
+.breadcrumb-menu ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.breadcrumb-menu ul li a:hover {
+    color: white;
+}
+
+.breadcrumb-menu ul li:not(:last-child)::after {
+    content: '/';
+    margin-left: 10px;
+    color: rgba(255, 255, 255, 0.6);
+}

@@ -3907,7 +3907,7 @@ i.fa.fa-close {
 
     .whatsapp-mobile {
         position: fixed;
-        top: 20px;
+        top: 100px;
         right: 20px;
         width: 50px;
         height: 50px;
@@ -3997,7 +3997,7 @@ i.fa.fa-close {
 @media only screen and (max-width: 767px) {
     .call-mobile {
         position: fixed;
-        top: 80px;
+        top: 160px;
         right: 20px;
         width: 50px;
         height: 50px;
